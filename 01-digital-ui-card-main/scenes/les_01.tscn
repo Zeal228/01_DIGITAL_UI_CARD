@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://0w01e5u1mauv"]
+
+[ext_resource type="Texture2D" uid="uid://chjf07tbo3th" path="res://assets/sprite.png" id="1_p4go7"]
+[ext_resource type="FontFile" uid="uid://c4lqrcw1qmy4j" path="res://assets/ComicoroRu_0.ttf" id="2_o8c0v"]
+[ext_resource type="Script" uid="uid://bqjqd4q1u3ojv" path="res://Scripts/main.gd" id="3_gg4ry"]
+[ext_resource type="Texture2D" uid="uid://cvpm3iqifajj7" path="res://assets/icon-2.png" id="4_s3scr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkl82"]
+atlas = ExtResource("1_p4go7")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8e5au"]
+texture = SubResource("AtlasTexture_tkl82")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+region_rect = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36joq"]
+atlas = ExtResource("1_p4go7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fvsx4"]
+texture = SubResource("AtlasTexture_36joq")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+region_rect = Rect2(0, 0, 16, 16)
+
+[sub_resource type="Theme" id="Theme_2qu55"]
+default_font = ExtResource("2_o8c0v")
+Button/styles/normal = SubResource("StyleBoxTexture_8e5au")
+HBoxContainer/constants/separation = 4
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_fvsx4")
+
+[node name="Main" type="Control" unique_id=832634493 node_paths=PackedStringArray("name_label", "job_label", "background", "avatar")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_2qu55")
+script = ExtResource("3_gg4ry")
+name_label = NodePath("Background/MarginContainer/VBoxContainer/NameLabel")
+job_label = NodePath("Background/MarginContainer/VBoxContainer/JobLabel")
+background = NodePath("Background")
+avatar = NodePath("Background/MarginContainer/VBoxContainer/Avatar")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1648245615]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12591085, 0.12591085, 0.12591082, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Background" unique_id=1462493440]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer" unique_id=1749100696]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Avatar" type="TextureRect" parent="Background/MarginContainer/VBoxContainer" unique_id=2073422410]
+layout_mode = 2
+texture = ExtResource("4_s3scr")
+
+[node name="JobLabel" type="Label" parent="Background/MarginContainer/VBoxContainer" unique_id=746723888]
+layout_mode = 2
+text = "Avatar"
+
+[node name="NameLabel" type="Label" parent="Background/MarginContainer/VBoxContainer" unique_id=273104355]
+layout_mode = 2
+text = "NameLabel"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/MarginContainer/VBoxContainer" unique_id=911257311]
+layout_mode = 2
+
+[node name="DevButton" type="Button" parent="Background/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1399509573]
+layout_mode = 2
+text = "dev"
+
+[node name="DesignButton" type="Button" parent="Background/MarginContainer/VBoxContainer/HBoxContainer" unique_id=464186800]
+layout_mode = 2
+text = "design"
+
+[connection signal="pressed" from="Background/MarginContainer/VBoxContainer/HBoxContainer/DevButton" to="." method="_on_dev_button_pressed"]
+[connection signal="pressed" from="Background/MarginContainer/VBoxContainer/HBoxContainer/DesignButton" to="." method="_on_design_button_pressed"]
